@@ -16,7 +16,18 @@ public class MineSweeper {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        MinesweeperModel model = new MinesweeperModel();
+        GamePanel panel = new GamePanel();
+        MinesweeperView view = new MinesweeperView();
+        MinesweeperController controller = new MinesweeperController(model, view);
+        panel.setGameSize(controller.getWidth(), controller.getHeight());
+        panel.setController(controller);
+        panel.viewBoard();
+        
+        view.setContentPane(panel);
+        view.setVisible(true);
+        view.pack();
+        
     }
     
 }

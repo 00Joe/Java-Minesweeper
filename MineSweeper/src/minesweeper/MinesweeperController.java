@@ -12,4 +12,26 @@ package minesweeper;
  */
 public class MinesweeperController {
     
+    private MinesweeperModel model;
+    private MinesweeperView view;
+    
+    public MinesweeperController(MinesweeperModel m, MinesweeperView v){
+        this.model = m;
+        this.view = v;
+    }
+    
+    public int getWidth()
+    {
+        return model.getWidth();
+    }
+    
+    public int getHeight()
+    {
+        return model.getHeight();
+    }
+    
+    public String getCell(int x, int y)
+    {
+        return model.getCell(x, y);
+    }
 }
