@@ -206,7 +206,7 @@ public class MinesweeperModel {
         {
             count++;
         }
-        if (i-1 < 9 && i-1 > -1 && j-1 < 9 && j-1 > -1 && board[i - 1][j - 1].equals(constant.MINE)) // diagonal below right
+        if (i+1 < 9 && i+1 > -1 && j+1 < 9 && j+1 > -1 && board[i + 1][j + 1].equals(constant.MINE)) // diagonal below right
         {
             count++;
         }

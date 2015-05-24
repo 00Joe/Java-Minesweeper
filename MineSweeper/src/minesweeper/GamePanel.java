@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -70,13 +71,22 @@ public class GamePanel extends javax.swing.JPanel {
             }
         }
     }
+    
+    public void showCell(JButton pressed)
+    {
+        String[] coordinates = buttonMap.get(pressed).split(" ");
+        int i = Integer.parseInt(coordinates[0]);
+        int j = Integer.parseInt(coordinates[1]);
+        
+        pressed.setText(controller.getCell(i, j));
+    }
 
     public void makeMove(JButton pressed) {
         String[] coordinates = buttonMap.get(pressed).split(" ");
         int i = Integer.parseInt(coordinates[0]);
         int j = Integer.parseInt(coordinates[1]);
         if (pressed.isEnabled()) {
-            if (controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("0")){
+            if (controller.getCell(i, j).equals("0")){
                 pressed.setEnabled(false);
 
                 if (i - 1 < 9 && i - 1 > -1 && j < 9 && j > -1) // above
@@ -120,18 +130,30 @@ public class GamePanel extends javax.swing.JPanel {
                     makeMove(grid[i - 1][j - 1]);
                 }
             }
-            else if(controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("1") ||
-                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("2") ||
-                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("3") ||
-                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("4") ||
-                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("5") ||
-                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("6") ||
-                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("7") ||
-                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("8") )
+            else if(controller.getCell(i, j).equals("1") ||
+                    controller.getCell(i, j).equals("2") ||
+                    controller.getCell(i, j).equals("3") ||
+                    controller.getCell(i, j).equals("4") ||
+                    controller.getCell(i, j).equals("5") ||
+                    controller.getCell(i, j).equals("6") ||
+                    controller.getCell(i, j).equals("7") ||
+                    controller.getCell(i, j).equals("8") )
             {
                 pressed.setEnabled(false);
+                showCell(pressed);
+            }
+            else
+            {
+                infoBox("You Lost!", "");
+                viewBoard();
+                
             }
         }
+    }
+    
+    public static void infoBox(String infoMessage, String titleBar)
+    {
+        JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
 
 }
