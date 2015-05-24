@@ -76,8 +76,7 @@ public class GamePanel extends javax.swing.JPanel {
         int i = Integer.parseInt(coordinates[0]);
         int j = Integer.parseInt(coordinates[1]);
         if (pressed.isEnabled()) {
-            if (!controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("m") 
-                && 0 >= Integer.parseInt(controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1]))) ){
+            if (controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("0")){
                 pressed.setEnabled(false);
 
                 if (i - 1 < 9 && i - 1 > -1 && j < 9 && j > -1) // above
@@ -120,6 +119,17 @@ public class GamePanel extends javax.swing.JPanel {
 
                     makeMove(grid[i - 1][j - 1]);
                 }
+            }
+            else if(controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("1") ||
+                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("2") ||
+                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("3") ||
+                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("4") ||
+                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("5") ||
+                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("6") ||
+                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("7") ||
+                    controller.getCell(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])).equals("8") )
+            {
+                pressed.setEnabled(false);
             }
         }
     }

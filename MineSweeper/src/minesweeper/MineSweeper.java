@@ -22,7 +22,7 @@ public class MineSweeper {
         MinesweeperController controller = new MinesweeperController(model, view);
         panel.setGameSize(controller.getWidth(), controller.getHeight());
         panel.setController(controller);
-        panel.viewBoard();
+        //panel.viewBoard();
         
         view.setContentPane(panel);
         view.setVisible(true);
